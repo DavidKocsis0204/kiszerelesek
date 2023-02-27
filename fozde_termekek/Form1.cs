@@ -63,6 +63,14 @@ namespace fozde_termekek
             UpdateAll();
             c_box_value_set();
             isnertClear();
+            C_box_feltoltesek();
+            listBox1.Items.Clear();
+        }
+
+        private void C_box_feltoltesek()
+        {
+            c_box_value_set();
+            ins_cbox_feltolt();
         }
 
         private void isnertClear()
@@ -78,6 +86,7 @@ namespace fozde_termekek
             c_box_value_set();
             comboBox1.Text = "Válassz...";
             visibility_change(false);
+            comboBox2.Text = "Válassz...";
         }
 
         private void c_box_value_set()
@@ -112,6 +121,9 @@ namespace fozde_termekek
 
         private void ins_cbox_feltolt()
         {
+            ins_kisz_cbox.Items.Clear();
+            kisz_cbox.Items.Clear();
+            comboBox2.Items.Clear();
             for (int i = 0; i < Kiszerelesek.Count; i++)
             {
                 ins_kisz_cbox.Items.Add(Kiszerelesek[i].Liter);
@@ -151,6 +163,7 @@ namespace fozde_termekek
                     }
                 }
             }
+            
         }
 
         private void del_btn_Click(object sender, EventArgs e)
@@ -159,14 +172,12 @@ namespace fozde_termekek
             {
                 DB.delKisz(Convert.ToInt32(Kiszerelesek.Find(x=>x.Liter==Convert.ToDouble(comboBox2.Text)).ID));
             }
+            ins_cbox_feltolt();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             c_box_value_change(Termekek.FindIndex(x=>x.Nev==(sender as ListBox).Text));
-            reload();
-            listBox1.Items.Clear();
-
         }
     }
 }
