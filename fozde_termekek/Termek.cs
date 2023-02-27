@@ -33,10 +33,8 @@ namespace fozde_termekek
             Evjarat = evjarat;
             Alcohol = alcohol;
             LiterAr = literar;
-            //TODO
             KiszTermKapcs insToKiszTermKapcs = new KiszTermKapcs(Form1.Kiszerelesek[Form1.Kiszerelesek.FindIndex(x=>x.Liter==liter)].ID, Form1.Termekek[Form1.Termekek.Count-1].ID+1);
             this.Test = new KiszTermKapcs(Form1.Kiszerelesek[Form1.Kiszerelesek.FindIndex(x => x.Liter == liter)].ID, Form1.Termekek[Form1.Termekek.Count - 1].ID + 1);
-            //DB.Kiszereles_termekWrite(insToKiszTermKapcs.kiszID, insToKiszTermKapcs.termekID);
         }
 
         private List<Kiszereles> getKiszereles()

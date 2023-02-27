@@ -115,13 +115,54 @@ namespace fozde_termekek
             }
         }
 
-        public static void TermekEdit(Termek produktum)
+        public static void TermekEdit(Termek produktum, int kiszID)
         {
+            string sql = $"UPDATE `termekek` SET `nev`=\"{produktum.Nev}\",`evjarat`={produktum.Evjarat},`erosseg`='{produktum.Alcohol}',`literar`={produktum.LiterAr} WHERE `id`={produktum.ID}";
+            Kiszereles_termekUpdate(produktum, kiszID);
+
             try
             {
                 MySqlConnection kapcsolat = new MySqlConnection(utvonal);
                 kapcsolat.Open();
-                string sql = $"UPDATE `termekek` SET `nev`=\"{produktum.Nev}\",`evjarat`={produktum.Evjarat},`erosseg`={produktum.Alcohol},`literar`={produktum.LiterAr} WHERE `id`={produktum.ID}";
+                //string sql = $"UPDATE `termekek` SET `nev`=\"{produktum.Nev}\",`evjarat`={produktum.Evjarat},`erosseg`={produktum.Alcohol},`literar`={produktum.LiterAr} WHERE `id`={produktum.ID}";
+                MySqlCommand command = new MySqlCommand(sql, kapcsolat);
+                command.ExecuteNonQuery();
+                kapcsolat.Close();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(sql);
+                MessageBox.Show($"{e}");
+            }
+        }
+
+        public static void Kiszereles_termekUpdate(Termek produktum, int kiszID)
+        {
+                string sql = $"UPDATE `kiszereleskapcs` SET `kiszID`={kiszID} WHERE `termID`={produktum.ID}";
+            try
+            {
+                MySqlConnection kapcsolat = new MySqlConnection(utvonal);
+                kapcsolat.Open();
+                MySqlCommand command = new MySqlCommand(sql, kapcsolat);
+                command.ExecuteNonQuery();
+                kapcsolat.Close();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(sql);
+                MessageBox.Show($"{e}");
+            }
+        }
+
+        public static void Kiszereles_termekWrite(string kiszID, string termID)
+        {
+            List<Termek> elements = TermekOlvasas();
+            List<KiszTermKapcs> kiszerelesek = new List<KiszTermKapcs>();
+            try
+            {
+                MySqlConnection kapcsolat = new MySqlConnection(utvonal);
+                kapcsolat.Open();
+                string sql = $"INSERT INTO `kiszereleskapcs` (`kiszID`, `termID`) VALUES ({kiszID},{elements[elements.Count-1].ID})";
                 MySqlCommand command = new MySqlCommand(sql, kapcsolat);
                 command.ExecuteNonQuery();
                 kapcsolat.Close();
@@ -132,20 +173,20 @@ namespace fozde_termekek
             }
         }
 
-        public static void Kiszereles_termekWrite(string kiszID, string termID)
+        public static void delKisz(int ID)
         {
-            List<KiszTermKapcs> kiszerelesek = new List<KiszTermKapcs>();
             try
             {
                 MySqlConnection kapcsolat = new MySqlConnection(utvonal);
                 kapcsolat.Open();
-                string sql = $"INSERT INTO `kiszereleskapcs`(`kiszID`, `termID`) VALUES (\'{kiszID}\',\'{termID}\')";
+                string sql = $"DELETE FROM `kiszereles` WHERE `ID`={ID}";
                 MySqlCommand command = new MySqlCommand(sql, kapcsolat);
                 command.ExecuteNonQuery();
                 kapcsolat.Close();
             }
             catch (MySqlException e)
             {
+                MessageBox.Show("nem jó");
                 MessageBox.Show($"{e}");
             }
         }

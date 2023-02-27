@@ -19,44 +19,48 @@ namespace fozde_termekek
         public Form1()
         {
             InitializeComponent();
-            comboBox1.SelectedValueChanged += delegate(object sender, EventArgs e) { c_box_value_change(comboBox1.SelectedIndex); };
-            edit_btn.Click += delegate(object sender, EventArgs e) { visibility_change(false); };
+            comboBox1.SelectedValueChanged += delegate (object sender, EventArgs e) { c_box_value_change(comboBox1.SelectedIndex); };
+            edit_btn.Click += delegate (object sender, EventArgs e) { visibility_change(false); };
             edit_btn.Click += delegate (object sender, EventArgs e) { ProductEdit(); };
             this.Width = 536;
             ins_btn.Click += delegate (object sender, EventArgs e) { insert(); };
             ins_cbox_feltolt();
         }
 
+        public static void UpdateAll()
+        {
+            KiszTermKapcsolatok = DB.Kiszereles_termekOlvas();
+            Kiszerelesek = DB.KiszerelesOlvasas();
+            Termekek = DB.TermekOlvasas();
+        }
+
         private void ProductEdit()
         {
-            DB.TermekEdit(new Termek(label9.Text ,edit_name_txtb.Text,
+            DB.TermekEdit(new Termek(label9.Text, edit_name_txtb.Text,
                         Convert.ToInt32(edit_year_txtb.Text),
                         Convert.ToDouble(edit_strong_txtb.Text),
-                        Convert.ToDouble(edit_liter_txtb.Text)));
+                        Convert.ToDouble(edit_liter_txtb.Text)), Convert.ToInt32(Kiszerelesek[Kiszerelesek.FindIndex(x => x.Liter == Convert.ToDouble(kisz_cbox.Text))].ID));
             reload();
         }
 
-        private void insert() //TODO!!!!
+        private void insert()
         {
+            Termek owntermek = new Termek(ins_name.Text,
+                        Convert.ToInt32(ins_year.Text),
+                        Convert.ToDouble(ins_strong.Text),
+                        Convert.ToDouble(ins_liter.Text),
+                        Convert.ToDouble(ins_kisz_cbox.Text));
             DB.TermekInsert(new Termek(ins_name.Text,
                         Convert.ToInt32(ins_year.Text),
                         Convert.ToDouble(ins_strong.Text),
                         Convert.ToDouble(ins_liter.Text),
                         Convert.ToDouble(ins_kisz_cbox.Text)));
-            Termek fuj = new Termek(ins_name.Text,
-                        Convert.ToInt32(ins_year.Text),
-                        Convert.ToDouble(ins_strong.Text),
-                        Convert.ToDouble(ins_liter.Text),
-                        Convert.ToDouble(ins_kisz_cbox.Text));
-            label12.Text = $"{fuj.Test.kiszID} {fuj.Test.termekID}";
             reload();
         }
 
         private void reload()
         {
-            Termekek = DB.TermekOlvasas();
-            Kiszerelesek = DB.KiszerelesOlvasas();
-            KiszTermKapcsolatok = DB.Kiszereles_termekOlvas();
+            UpdateAll();
             c_box_value_set();
             isnertClear();
         }
@@ -72,7 +76,7 @@ namespace fozde_termekek
         private void Form1_Load(object sender, EventArgs e)
         {
             c_box_value_set();
-            comboBox1.Text="Válassz...";
+            comboBox1.Text = "Válassz...";
             visibility_change(false);
         }
 
@@ -111,6 +115,8 @@ namespace fozde_termekek
             for (int i = 0; i < Kiszerelesek.Count; i++)
             {
                 ins_kisz_cbox.Items.Add(Kiszerelesek[i].Liter);
+                kisz_cbox.Items.Add(Kiszerelesek[i].Liter);
+                comboBox2.Items.Add(Kiszerelesek[i].Liter);
             }
         }
 
@@ -129,6 +135,38 @@ namespace fozde_termekek
             edit_btn.Visible = visible;
             comboBox1.Text = "Válassz...";
             comboBox1.Visible = !visible;
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            Kiszereles mennyiseg = Kiszerelesek.Find(x => x.Liter == Convert.ToDouble(comboBox2.Text));
+            for (int i = 0; i < Termekek.Count; i++)
+            {
+                for (int j = 0; j < Termekek[i].Kiszerelesek.Count; j++)
+                {
+                    if (Termekek[i].Kiszerelesek[j].Liter == mennyiseg.Liter)
+                    {
+                        listBox1.Items.Add(Termekek[i].Nev);
+                    }
+                }
+            }
+        }
+
+        private void del_btn_Click(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedItem!="" && listBox1.Items.Count == 0)
+            {
+                DB.delKisz(Convert.ToInt32(Kiszerelesek.Find(x=>x.Liter==Convert.ToDouble(comboBox2.Text)).ID));
+            }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            c_box_value_change(Termekek.FindIndex(x=>x.Nev==(sender as ListBox).Text));
+            reload();
+            listBox1.Items.Clear();
+
         }
     }
 }
