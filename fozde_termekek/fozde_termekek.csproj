@@ -85,12 +85,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB.cs" />
+    <Compile Include="DB_operation_methods.cs" />
+    <Compile Include="Display_methods.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper_functions.cs" />
     <Compile Include="Kiszereles.cs" />
     <Compile Include="KiszTermKapcs.cs" />
     <Compile Include="Program.cs" />

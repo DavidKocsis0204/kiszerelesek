@@ -124,7 +124,6 @@ namespace fozde_termekek
             {
                 MySqlConnection kapcsolat = new MySqlConnection(utvonal);
                 kapcsolat.Open();
-                //string sql = $"UPDATE `termekek` SET `nev`=\"{produktum.Nev}\",`evjarat`={produktum.Evjarat},`erosseg`={produktum.Alcohol},`literar`={produktum.LiterAr} WHERE `id`={produktum.ID}";
                 MySqlCommand command = new MySqlCommand(sql, kapcsolat);
                 command.ExecuteNonQuery();
                 kapcsolat.Close();
@@ -173,20 +172,41 @@ namespace fozde_termekek
             }
         }
 
-        public static void delKisz(int ID)
+        public static void delete(int ID, bool isTermek)
         {
+            delete_all_kisz_term_kapcs(ID);
+            string sql;
             try
             {
                 MySqlConnection kapcsolat = new MySqlConnection(utvonal);
                 kapcsolat.Open();
-                string sql = $"DELETE FROM `kiszereles` WHERE `ID`={ID}";
+                if(!isTermek) sql = $"DELETE FROM `kiszereles` WHERE `ID`={ID}";
+                else sql = $"DELETE FROM `termekek` WHERE `ID`={ID}";
                 MySqlCommand command = new MySqlCommand(sql, kapcsolat);
                 command.ExecuteNonQuery();
                 kapcsolat.Close();
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("nem jó");
+                MessageBox.Show($"{ID}, {isTermek}");
+                MessageBox.Show($"{e}");
+            }
+        }
+
+        public static void delete_all_kisz_term_kapcs(int termID)
+        {
+            try
+            {
+                MySqlConnection kapcsolat = new MySqlConnection(utvonal);
+                kapcsolat.Open();
+                string sql = $"DELETE FROM `kiszereleskapcs` WHERE `termID`={termID}";
+                MySqlCommand command = new MySqlCommand(sql, kapcsolat);
+                command.ExecuteNonQuery();
+                kapcsolat.Close();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show($"{termID}");
                 MessageBox.Show($"{e}");
             }
         }

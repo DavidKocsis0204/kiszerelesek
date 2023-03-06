@@ -57,6 +57,7 @@ namespace fozde_termekek
             this.label13 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.del_btn = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ins_btn
@@ -307,11 +308,23 @@ namespace fozde_termekek
             this.del_btn.UseVisualStyleBackColor = true;
             this.del_btn.Click += new System.EventHandler(this.del_btn_Click);
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button1.Location = new System.Drawing.Point(356, 312);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(139, 61);
+            this.button1.TabIndex = 32;
+            this.button1.Text = "Termék eltávolítás";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(538, 595);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.del_btn);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.comboBox2);
@@ -379,6 +392,7 @@ namespace fozde_termekek
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button del_btn;
+        private System.Windows.Forms.Button button1;
     }
 }
 
