@@ -64,3 +64,5 @@ D:\git_kd\fozde_termekek\kiszerelesek\fozde_termekek\obj\Debug\fozde_termekek.cs
 D:\git_kd\fozde_termekek\kiszerelesek\fozde_termekek\obj\Debug\fozde_termekek.csproj.CopyComplete
 D:\git_kd\fozde_termekek\kiszerelesek\fozde_termekek\obj\Debug\fozde_termekek.exe
 D:\git_kd\fozde_termekek\kiszerelesek\fozde_termekek\obj\Debug\fozde_termekek.pdb
+D:\git_kd\fozde_termekek\kiszerelesek\fozde_termekek\obj\Debug\fozde_termekek.login.resources
+D:\git_kd\fozde_termekek\kiszerelesek\fozde_termekek\obj\Debug\fozde_termekek.Profile_page.Profil_page.resources

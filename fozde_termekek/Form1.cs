@@ -24,12 +24,12 @@ namespace fozde_termekek
             edit_btn.Click += delegate (object sender, EventArgs e) { Display_methods.visibility_change(false); };
             edit_btn.Click += delegate (object sender, EventArgs e) { DB_operation_methods.ProductEdit(this.Controls); };
             ins_btn.Click += delegate (object sender, EventArgs e) { DB_operation_methods.insert(this.Controls); };
-            ins_cbox_feltolt();
+            Display_methods.ins_cbox_feltolt();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            c_box_value_set();
+            Display_methods.c_box_value_set();
             comboBox1.Text = "Válassz...";
             Display_methods.visibility_change(false);
             comboBox2.Text = "Válassz...";
@@ -58,12 +58,12 @@ namespace fozde_termekek
             {
                 DB.delete(Convert.ToInt32(Kiszerelesek.Find(x=>x.Liter==Convert.ToDouble(comboBox2.Text)).ID), false);
             }
-            ins_cbox_feltolt();
+            Display_methods.ins_cbox_feltolt();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            c_box_value_change(Termekek.FindIndex(x=>x.Nev==(sender as ListBox).Text));
+            Display_methods.c_box_value_change(Termekek.FindIndex(x=>x.Nev==(sender as ListBox).Text));
         }
 
         private void button1_Click(object sender, EventArgs e)
