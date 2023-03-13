@@ -12,9 +12,12 @@ namespace fozde_termekek.Profile_page
 {
     public partial class Profil_page : Form
     {
+        public User.User current_user = new User.User();
+
         public Profil_page(User.User user)
         {
             InitializeComponent();
+            current_user = user;
             this.Text = user.Nev;
         }
 
@@ -27,7 +30,8 @@ namespace fozde_termekek.Profile_page
 
         private void edit_passwd_btn_Click(object sender, EventArgs e)
         {
-
+            Profil_Passwd_Mod.Passwd_Mod pass_mod = new Profil_Passwd_Mod.Passwd_Mod(current_user.Jelszo);
+            pass_mod.Show();
         }
     }
 }
