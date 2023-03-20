@@ -19,9 +19,14 @@ namespace fozde_termekek.Profile_page
             InitializeComponent();
             current_user = user;
             this.Text = user.Nev;
+            user_profil_privilege_set(current_user.Jogosultsag);
         }
 
-
+        private void user_profil_privilege_set(int priv)
+        {  
+            if (priv == 2) kisz_term_btn.Visible = true;
+            if (priv == 2) new_kisz_btn.Visible = true;
+        }
 
         private void Profil_page_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -30,8 +35,25 @@ namespace fozde_termekek.Profile_page
 
         private void edit_passwd_btn_Click(object sender, EventArgs e)
         {
-            Profil_Passwd_Mod.Passwd_Mod pass_mod = new Profil_Passwd_Mod.Passwd_Mod(current_user.Jelszo);
+            Profil_Passwd_Mod.Passwd_Mod pass_mod = new Profil_Passwd_Mod.Passwd_Mod(current_user.Jelszo, current_user);
             pass_mod.Show();
+        }
+
+        private void kisz_term_btn_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.ShowDialog();
+        }
+
+        private void new_kisz_btn_Click(object sender, EventArgs e)
+        {
+            Ins_kisz_form inskiszform = new Ins_kisz_form();
+            inskiszform.Show();
+        }
+
+        private void rendeles_btn_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

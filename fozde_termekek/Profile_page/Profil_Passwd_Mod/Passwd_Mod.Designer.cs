@@ -53,6 +53,7 @@ namespace fozde_termekek.Profile_page.Profil_Passwd_Mod
             // 
             this.new_pass_1.Location = new System.Drawing.Point(101, 83);
             this.new_pass_1.Name = "new_pass_1";
+            this.new_pass_1.PasswordChar = '*';
             this.new_pass_1.Size = new System.Drawing.Size(121, 20);
             this.new_pass_1.TabIndex = 9;
             // 
@@ -70,6 +71,7 @@ namespace fozde_termekek.Profile_page.Profil_Passwd_Mod
             // 
             this.old_pass.Location = new System.Drawing.Point(101, 45);
             this.old_pass.Name = "old_pass";
+            this.old_pass.PasswordChar = '*';
             this.old_pass.Size = new System.Drawing.Size(121, 20);
             this.old_pass.TabIndex = 7;
             // 
@@ -87,6 +89,7 @@ namespace fozde_termekek.Profile_page.Profil_Passwd_Mod
             // 
             this.new_pass_2.Location = new System.Drawing.Point(101, 116);
             this.new_pass_2.Name = "new_pass_2";
+            this.new_pass_2.PasswordChar = '*';
             this.new_pass_2.Size = new System.Drawing.Size(121, 20);
             this.new_pass_2.TabIndex = 12;
             // 
@@ -104,7 +107,7 @@ namespace fozde_termekek.Profile_page.Profil_Passwd_Mod
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(573, 294);
+            this.ClientSize = new System.Drawing.Size(272, 224);
             this.Controls.Add(this.new_pass_2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.passmod_btn);
@@ -114,7 +117,6 @@ namespace fozde_termekek.Profile_page.Profil_Passwd_Mod
             this.Controls.Add(this.oldpass_lb);
             this.Name = "Passwd_Mod";
             this.Text = "Passwd_Mod";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Passwd_Mod_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

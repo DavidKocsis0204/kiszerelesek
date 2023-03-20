@@ -206,7 +206,23 @@ namespace fozde_termekek
             }
             catch (MySqlException e)
             {
-                MessageBox.Show($"{termID}");
+                MessageBox.Show($"{e}");
+            }
+        }
+
+        public static void insert_kisz(string mennyiseg)
+        {
+            try
+            {
+                MySqlConnection kapcsolat = new MySqlConnection(utvonal);
+                kapcsolat.Open();
+                string sql = $"INSERT INTO `kiszereles`(`mennyiseg`) VALUES (\'{mennyiseg}\')";
+                MySqlCommand command = new MySqlCommand(sql, kapcsolat);
+                command.ExecuteNonQuery();
+                kapcsolat.Close();
+            }
+            catch (MySqlException e)
+            {
                 MessageBox.Show($"{e}");
             }
         }

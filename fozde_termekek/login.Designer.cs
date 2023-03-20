@@ -57,6 +57,7 @@ namespace fozde_termekek
             // 
             this.log_passwd.Location = new System.Drawing.Point(103, 67);
             this.log_passwd.Name = "log_passwd";
+            this.log_passwd.PasswordChar = '*';
             this.log_passwd.Size = new System.Drawing.Size(121, 20);
             this.log_passwd.TabIndex = 4;
             // 

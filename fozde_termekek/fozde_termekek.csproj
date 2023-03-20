@@ -102,6 +102,12 @@
     <Compile Include="login.Designer.cs">
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Profile_page\Ins_kisz_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Profile_page\Ins_kisz_form.Designer.cs">
+      <DependentUpon>Ins_kisz_form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Profile_page\Profil_page.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +120,12 @@
     <Compile Include="Profile_page\Profil_Passwd_Mod\Passwd_Mod.Designer.cs">
       <DependentUpon>Passwd_Mod.cs</DependentUpon>
     </Compile>
+    <Compile Include="Profile_page\Rendeles\Rendeles_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Profile_page\Rendeles\Rendeles_form.Designer.cs">
+      <DependentUpon>Rendeles_form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Termek.cs" />
@@ -125,11 +137,17 @@
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Profile_page\Ins_kisz_form.resx">
+      <DependentUpon>Ins_kisz_form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Profile_page\Profil_page.resx">
       <DependentUpon>Profil_page.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Profile_page\Profil_Passwd_Mod\Passwd_Mod.resx">
       <DependentUpon>Passwd_Mod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Profile_page\Rendeles\Rendeles_form.resx">
+      <DependentUpon>Rendeles_form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

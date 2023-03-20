@@ -54,7 +54,6 @@ namespace fozde_termekek
             Helper_functions.find_lbl("label9", Controls).Visible = true;
             Helper_functions.find_lbl("label9", Controls).Text = Form1.Termekek[i].ID;
             Helper_functions.find_lbl("label9", Controls).Visible = false;
-            visibility_change(true);
         }
 
         public static void kiszCboxFeltolt(Termek termek)
@@ -77,20 +76,6 @@ namespace fozde_termekek
                 Helper_functions.find_cbox("kisz_cbox", Controls).Items.Add(Form1.Kiszerelesek[i].Liter);
                 Helper_functions.find_cbox("comboBox2", Controls).Items.Add(Form1.Kiszerelesek[i].Liter);
             }
-        }
-
-        public static void visibility_change(bool visible)
-        {
-            Helper_functions.find_tbox("edit_name_txtb", Controls).Visible = visible;
-            Helper_functions.find_tbox("edit_year_txtb", Controls).Visible = visible;
-            Helper_functions.find_tbox("edit_strong_txtb", Controls).Visible = visible;
-            Helper_functions.find_tbox("edit_liter_txtb", Controls).Visible = visible;
-            Helper_functions.find_lbl("label5", Controls).Visible = visible;
-            Helper_functions.find_lbl("label6", Controls).Visible = visible;
-            Helper_functions.find_lbl("label7", Controls).Visible = visible;
-            Helper_functions.find_lbl("label8", Controls).Visible = visible;
-            Helper_functions.find_btn("edit_btn", Controls).Visible = visible;
-            Helper_functions.find_cbox("comboBox1", Controls).Text = "Válassz...";
         }
     }
 }

@@ -21,7 +21,6 @@ namespace fozde_termekek
             InitializeComponent();
             Display_methods.Controls = this.Controls;
             comboBox1.SelectedValueChanged += delegate (object sender, EventArgs e) { Display_methods.c_box_value_change(comboBox1.SelectedIndex); };
-            edit_btn.Click += delegate (object sender, EventArgs e) { Display_methods.visibility_change(false); };
             edit_btn.Click += delegate (object sender, EventArgs e) { DB_operation_methods.ProductEdit(this.Controls); };
             ins_btn.Click += delegate (object sender, EventArgs e) { DB_operation_methods.insert(this.Controls); };
             Display_methods.ins_cbox_feltolt();
@@ -31,7 +30,6 @@ namespace fozde_termekek
         {
             Display_methods.c_box_value_set();
             comboBox1.Text = "Válassz...";
-            Display_methods.visibility_change(false);
             comboBox2.Text = "Válassz...";
         }
 
@@ -70,6 +68,11 @@ namespace fozde_termekek
         {
             string text = comboBox1.Text;
             if (text != "" || text != "Válassz...") DB.delete(Convert.ToInt32(Termekek.Find(x => x.Nev == text).ID), true);
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Close();
         }
     }
 }
