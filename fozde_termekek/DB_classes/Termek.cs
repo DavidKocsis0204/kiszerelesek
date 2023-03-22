@@ -33,25 +33,25 @@ namespace fozde_termekek
             Evjarat = evjarat;
             Alcohol = alcohol;
             LiterAr = literar;
-            KiszTermKapcs insToKiszTermKapcs = new KiszTermKapcs(Form1.Kiszerelesek[Form1.Kiszerelesek.FindIndex(x=>x.Liter==liter)].ID, Form1.Termekek[Form1.Termekek.Count-1].ID+1);
-            this.Test = new KiszTermKapcs(Form1.Kiszerelesek[Form1.Kiszerelesek.FindIndex(x => x.Liter == liter)].ID, Form1.Termekek[Form1.Termekek.Count - 1].ID + 1);
+            KiszTermKapcs insToKiszTermKapcs = new KiszTermKapcs(Profile_page.Profil_page.Kiszerelesek[Profile_page.Profil_page.Kiszerelesek.FindIndex(x=>x.Liter==liter)].ID, Profile_page.Profil_page.Termekek[Profile_page.Profil_page.Termekek.Count-1].ID+1);
+            this.Test = new KiszTermKapcs(Profile_page.Profil_page.Kiszerelesek[Profile_page.Profil_page.Kiszerelesek.FindIndex(x => x.Liter == liter)].ID, Profile_page.Profil_page.Termekek[Profile_page.Profil_page.Termekek.Count - 1].ID + 1);
         }
 
         private List<Kiszereles> getKiszereles()
         {
             List<Kiszereles> data = new List<Kiszereles>();
-            for (int i = 0; i < Form1.KiszTermKapcsolatok.Count; i++)
+            for (int i = 0; i < Profile_page.Profil_page.KiszTermKapcsolatok.Count; i++)
             {
-                if (Form1.KiszTermKapcsolatok[i].termekID == this.ID) data.Add(kiszerelesKeres(Form1.KiszTermKapcsolatok[i].kiszID));
+                if (Profile_page.Profil_page.KiszTermKapcsolatok[i].termekID == this.ID) data.Add(kiszerelesKeres(Profile_page.Profil_page.KiszTermKapcsolatok[i].kiszID));
             }
             return data;
         }
 
         private Kiszereles kiszerelesKeres(string kiszID)
         {
-            for (int i = 0; i < Form1.Kiszerelesek.Count; i++)
+            for (int i = 0; i < Profile_page.Profil_page.Kiszerelesek.Count; i++)
             {
-                if (Form1.Kiszerelesek[i].ID == kiszID) return Form1.Kiszerelesek[i];
+                if (Profile_page.Profil_page.Kiszerelesek[i].ID == kiszID) return Profile_page.Profil_page.Kiszerelesek[i];
             }
             return null;
         }

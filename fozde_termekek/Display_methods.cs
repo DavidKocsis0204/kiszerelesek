@@ -13,7 +13,7 @@ namespace fozde_termekek
 
         public static void reload()
         {
-            DB_operation_methods.Update_All_DB_list();
+            Helper_functions.Update_All_DB_list();
             c_box_value_set();
             insertClear();
             C_box_feltoltesek();
@@ -38,21 +38,21 @@ namespace fozde_termekek
         {
             ComboBox c_box = Helper_functions.find_cbox("comboBox1", Controls);
             c_box.Items.Clear();
-            for (int i = 0; i < Form1.Termekek.Count; i++)
+            for (int i = 0; i < Profile_page.Profil_page.Termekek.Count; i++)
             {
-                c_box.Items.Add(Form1.Termekek[i].Nev);
+                c_box.Items.Add(Profile_page.Profil_page.Termekek[i].Nev);
             }
         }
 
         public static void c_box_value_change(int i)
         {
-            Helper_functions.find_tbox("edit_name_txtb", Controls).Text = Form1.Termekek[i].Nev;
-            Helper_functions.find_tbox("edit_year_txtb", Controls).Text = Form1.Termekek[i].Evjarat.ToString();
-            Helper_functions.find_tbox("edit_strong_txtb", Controls).Text = Form1.Termekek[i].Alcohol.ToString();
-            Helper_functions.find_tbox("edit_liter_txtb", Controls).Text = Form1.Termekek[i].LiterAr.ToString();
-            kiszCboxFeltolt(Form1.Termekek[i]);
+            Helper_functions.find_tbox("edit_name_txtb", Controls).Text = Profile_page.Profil_page.Termekek[i].Nev;
+            Helper_functions.find_tbox("edit_year_txtb", Controls).Text = Profile_page.Profil_page.Termekek[i].Evjarat.ToString();
+            Helper_functions.find_tbox("edit_strong_txtb", Controls).Text = Profile_page.Profil_page.Termekek[i].Alcohol.ToString();
+            Helper_functions.find_tbox("edit_liter_txtb", Controls).Text = Profile_page.Profil_page.Termekek[i].LiterAr.ToString();
+            kiszCboxFeltolt(Profile_page.Profil_page.Termekek[i]);
             Helper_functions.find_lbl("label9", Controls).Visible = true;
-            Helper_functions.find_lbl("label9", Controls).Text = Form1.Termekek[i].ID;
+            Helper_functions.find_lbl("label9", Controls).Text = Profile_page.Profil_page.Termekek[i].ID;
             Helper_functions.find_lbl("label9", Controls).Visible = false;
         }
 
@@ -70,11 +70,11 @@ namespace fozde_termekek
             Helper_functions.find_cbox("ins_kisz_cbox", Controls).Items.Clear();
             Helper_functions.find_cbox("kisz_cbox", Controls).Items.Clear();
             Helper_functions.find_cbox("comboBox2", Controls).Items.Clear();
-            for (int i = 0; i < Form1.Kiszerelesek.Count; i++)
+            for (int i = 0; i < Profile_page.Profil_page.Kiszerelesek.Count; i++)
             {
-                Helper_functions.find_cbox("ins_kisz_cbox", Controls).Items.Add(Form1.Kiszerelesek[i].Liter);
-                Helper_functions.find_cbox("kisz_cbox", Controls).Items.Add(Form1.Kiszerelesek[i].Liter);
-                Helper_functions.find_cbox("comboBox2", Controls).Items.Add(Form1.Kiszerelesek[i].Liter);
+                Helper_functions.find_cbox("ins_kisz_cbox", Controls).Items.Add(Profile_page.Profil_page.Kiszerelesek[i].Liter);
+                Helper_functions.find_cbox("kisz_cbox", Controls).Items.Add(Profile_page.Profil_page.Kiszerelesek[i].Liter);
+                Helper_functions.find_cbox("comboBox2", Controls).Items.Add(Profile_page.Profil_page.Kiszerelesek[i].Liter);
             }
         }
     }

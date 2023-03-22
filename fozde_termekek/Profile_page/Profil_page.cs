@@ -12,6 +12,11 @@ namespace fozde_termekek.Profile_page
 {
     public partial class Profil_page : Form
     {
+        public static string utvonal = "server=localhost;database=fozde;uid=root;pwd=;";
+        public static List<KiszTermKapcs> KiszTermKapcsolatok = DB_classes.GET_op.Kiszereles_termekOlvas();
+        public static List<Kiszereles> Kiszerelesek = DB_classes.GET_op.KiszerelesOlvasas();
+        public static List<Termek> Termekek = DB_classes.GET_op.TermekOlvasas();
+
         public User.User current_user = new User.User();
 
         public Profil_page(User.User user)
@@ -26,6 +31,7 @@ namespace fozde_termekek.Profile_page
         {  
             if (priv == 2) kisz_term_btn.Visible = true;
             if (priv == 2) new_kisz_btn.Visible = true;
+            if (priv == 2) rendeles_btn.Visible = false;
         }
 
         private void Profil_page_FormClosing(object sender, FormClosingEventArgs e)
@@ -53,7 +59,8 @@ namespace fozde_termekek.Profile_page
 
         private void rendeles_btn_Click(object sender, EventArgs e)
         {
-            
+            Rendeles.Rendeles_form rendeles_form = new Rendeles.Rendeles_form();
+            rendeles_form.Show();
         }
     }
 }

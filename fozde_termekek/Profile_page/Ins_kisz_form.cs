@@ -23,9 +23,10 @@ namespace fozde_termekek.Profile_page
             {
                 if (kisz_amount.Text != "")
                 {
-                    DB.insert_kisz(kisz_amount.Text);
+                    DB_classes.POST_op.insert_kisz(kisz_amount.Text);
                 }
                 kisz_amount.Text = "";
+                Helper_functions.Update_All_DB_list();
             }
             catch (Exception a)
             {

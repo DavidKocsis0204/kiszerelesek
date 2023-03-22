@@ -12,9 +12,6 @@ namespace fozde_termekek
 {
     public partial class Form1 : Form
     {
-        public static List<KiszTermKapcs> KiszTermKapcsolatok = DB.Kiszereles_termekOlvas();
-        public static List<Kiszereles> Kiszerelesek = DB.KiszerelesOlvasas();
-        public static List<Termek> Termekek = DB.TermekOlvasas();
 
         public Form1()
         {
@@ -36,14 +33,14 @@ namespace fozde_termekek
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
-            Kiszereles mennyiseg = Kiszerelesek.Find(x => x.Liter == Convert.ToDouble(comboBox2.Text));
-            for (int i = 0; i < Termekek.Count; i++)
+            Kiszereles mennyiseg = Profile_page.Profil_page.Kiszerelesek.Find(x => x.Liter == Convert.ToDouble(comboBox2.Text));
+            for (int i = 0; i < Profile_page.Profil_page.Termekek.Count; i++)
             {
-                for (int j = 0; j < Termekek[i].Kiszerelesek.Count; j++)
+                for (int j = 0; j < Profile_page.Profil_page.Termekek[i].Kiszerelesek.Count; j++)
                 {
-                    if (Termekek[i].Kiszerelesek[j].Liter == mennyiseg.Liter)
+                    if (Profile_page.Profil_page.Termekek[i].Kiszerelesek[j].Liter == mennyiseg.Liter)
                     {
-                        listBox1.Items.Add(Termekek[i].Nev);
+                        listBox1.Items.Add(Profile_page.Profil_page.Termekek[i].Nev);
                     }
                 }
             }
@@ -54,25 +51,20 @@ namespace fozde_termekek
         {
             if (listBox1.SelectedItem!="" && listBox1.Items.Count == 0)
             {
-                DB.delete(Convert.ToInt32(Kiszerelesek.Find(x=>x.Liter==Convert.ToDouble(comboBox2.Text)).ID), false);
+                DB_classes.DELETE_op.delete(Convert.ToInt32(Profile_page.Profil_page.Kiszerelesek.Find(x=>x.Liter==Convert.ToDouble(comboBox2.Text)).ID), false);
             }
             Display_methods.ins_cbox_feltolt();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Display_methods.c_box_value_change(Termekek.FindIndex(x=>x.Nev==(sender as ListBox).Text));
+            Display_methods.c_box_value_change(Profile_page.Profil_page.Termekek.FindIndex(x=>x.Nev==(sender as ListBox).Text));
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             string text = comboBox1.Text;
-            if (text != "" || text != "Válassz...") DB.delete(Convert.ToInt32(Termekek.Find(x => x.Nev == text).ID), true);
-        }
-
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            this.Close();
+            if (text != "" || text != "Válassz...") DB_classes.DELETE_op.delete(Convert.ToInt32(Profile_page.Profil_page.Termekek.Find(x => x.Nev == text).ID), true);
         }
     }
 }
